@@ -5,15 +5,14 @@ interface ProductListProps {
   onSelectProduct: (id: string) => void;
 }
 
-const ProductList: React.FC<ProductListProps> = ({
-  onSelectProduct,
-}) => {
+const ProductList: React.FC<ProductListProps> = ({ onSelectProduct }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
       {cleatsData.map((cleat) => (
         <div
           key={cleat.id}
-          onClick={() => onSelectProduct(cleat.id)}
+          // Convertendo o id numérico para string usando String()
+          onClick={() => onSelectProduct(String(cleat.id))}
           className="bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/20 cursor-pointer group hover:border-primary-container/50 transition-all"
         >
           <div className="aspect-[4/3] overflow-hidden">
@@ -29,9 +28,7 @@ const ProductList: React.FC<ProductListProps> = ({
               {cleat.name}
             </h3>
 
-            <p className="text-primary font-bold">
-              ${cleat.price.toFixed(2)}
-            </p>
+            <p className="text-primary font-bold">${cleat.price.toFixed(2)}</p>
           </div>
         </div>
       ))}
