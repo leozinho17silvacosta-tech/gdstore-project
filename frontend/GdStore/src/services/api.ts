@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 interface ApiOptions {
   method?: string;
@@ -6,7 +6,10 @@ interface ApiOptions {
   token?: string | null;
 }
 
-export async function api<T>(endpoint: string, options: ApiOptions = {}): Promise<T> {
+export async function api<T>(
+  endpoint: string,
+  options: ApiOptions = {},
+): Promise<T> {
   const { method = "GET", body, token } = options;
 
   const headers: Record<string, string> = {
